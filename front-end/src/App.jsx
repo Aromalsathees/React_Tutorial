@@ -22,7 +22,7 @@ import Numbers from './components/Numbers'
 import Stopwatch from './components/Stopwatch'
 
 import Toggle from './components/Toggle'
-
+import Faq from './components/Faq'
 
 const App = () => {
   return (
@@ -181,10 +181,20 @@ const App = () => {
 
 
          <Route
-        path='/'
+        path='/toggle'
         element={
           <>
           < Toggle/>
+          </>
+        }
+        /> 
+
+
+        <Route
+        path='/'
+        element={
+          <>
+          < Faq/>
           </>
         }
         /> 
