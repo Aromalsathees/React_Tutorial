@@ -19,6 +19,7 @@ import ChildB from './components/ChildB'
 import Validation from './components/Validation'
 
 import Numbers from './components/Numbers'
+import Stopwatch from './components/Stopwatch'
 
 
 const App = () => {
@@ -158,13 +159,26 @@ const App = () => {
         /> 
 
         <Route
-        path='/'
+        path='/numbers'
         element={
           <>
           <Numbers/>
           </>
         }
         /> 
+
+
+         <Route
+        path='/'
+        element={
+          <>
+          < Stopwatch/>
+          </>
+        }
+        /> 
+
+
+       
 
 
 
