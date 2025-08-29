@@ -21,6 +21,8 @@ import Validation from './components/Validation'
 import Numbers from './components/Numbers'
 import Stopwatch from './components/Stopwatch'
 
+import Toggle from './components/Toggle'
+
 
 const App = () => {
   return (
@@ -169,10 +171,20 @@ const App = () => {
 
 
          <Route
-        path='/'
+        path='/watch'
         element={
           <>
           < Stopwatch/>
+          </>
+        }
+        /> 
+
+
+         <Route
+        path='/'
+        element={
+          <>
+          < Toggle/>
           </>
         }
         /> 
