@@ -1,44 +1,56 @@
 // import React from 'react'
 // import {useState} from 'react'
 
+
 // const Faq = () => {
 
-//     const [Datas ,SetDatas] = useState({})
+//   const [Datas ,SetData] = useState([])
+ 
 
-//      const Data = [
-//         {
-//          name : 'banner',
-//         role : 'hul smash'
+//   const Data = [
+//     {
+//       name: 'banner',
+//       role: 'hul smash'
 //     },
-//     {     name : 'bruce',
-//      role : 'batman'
+//     {
+//       name: 'bruce',
+//       role: 'batman'
 //     },
-//    {
-//     name : 'stark',
-//     role : 'ironman'
-//  }]
+//     {
+//       name: 'stark',
+//       role: 'ironman'
+//     }
+//   ];
 
-
-//  function handleClick(e){
-//       SetDatas(Data)
-//  }
+//   function handleClick(val){
+//         SetData(prev => [...prev,val])
+//   }
 
 
 //   return (
 //     <div>
-//         {Data.map((val , ind)=>(
-//             <div key={ind}>
-//                 {val.name}
-//                 <button onClick={handleClick}>
-//                       show 
-//                 </button>
-//             </div>
-//         ))}
-
-//         <div>
-//             {Datas && <p>{Datas.role}</p>}
+//       {Data.map((val,ind)=>(
+//         <div key={ind}>
+//           <h1>{val.name}</h1>
+//           <button onClick={()=>{handleClick(val)}}>
+//             {val.name == Datas.name? 'show Less ': 'show More'}
+//           </button>
 //         </div>
-//      </div>  
+//       ))}
+   
+//     <div>
+          
+//           {Datas.map((v,i)=>(
+//             <div key={i}>
+//             <h1>{v.name}</h1>
+//             <h1>{v.role}</h1>
+//             </div>
+//           ))}
+
+        
+//     </div>
+//   </div>
+   
 //   )
 // }
 
@@ -46,32 +58,24 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const Faq = () => {
-  const [selected, setSelected] = useState(null);
+  const [Datas, SetData] = useState([])
 
   const Data = [
-    {
-      name: 'banner',
-      role: 'hul smash'
-    },
-    {
-      name: 'bruce',
-      role: 'batman'
-    },
-    {
-      name: 'stark',
-      role: 'ironman'
-    }
-  ];
+    { name: 'banner', role: 'hul smash' },
+    { name: 'bruce', role: 'batman' },
+    { name: 'stark', role: 'ironman' }
+  ]
 
-  function handleClick(item) {
-    // toggle: if same item clicked, close it
-    if (selected?.name === item.name) {
-      setSelected(null);
+  function handleClick(val) {
+    // already selected ആണെങ്കിൽ remove ചെയ്യുക
+    if (Datas.some(item => item.name === val.name)) {
+      SetData(prev => prev.filter(item => item.name !== val.name))
     } else {
-      setSelected(item);
+      // otherwise add ചെയ്യുക
+      SetData(prev => [...prev, val])
     }
   }
 
@@ -79,18 +83,23 @@ const Faq = () => {
     <div>
       {Data.map((val, ind) => (
         <div key={ind}>
-          <span>{val.name}</span>
+          <h1>{val.name}</h1>
           <button onClick={() => handleClick(val)}>
-            {selected?.name === val.name ? 'hide' : 'show'}
+            {Datas.some(item => item.name === val.name) ? 'Show Less' : 'Show More'}
           </button>
-
-          {selected?.name === val.name && (
-            <p>{val.role}</p>
-          )}
         </div>
       ))}
-    </div>
-  );
-};
 
-export default Faq;
+      <div>
+        {Datas.map((v, i) => (
+          <div key={i}>
+            <h1>{v.name}</h1>
+            <h1>{v.role}</h1>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default Faq
