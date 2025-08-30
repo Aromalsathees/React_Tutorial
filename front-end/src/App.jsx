@@ -24,6 +24,11 @@ import Stopwatch from './components/Stopwatch'
 import Toggle from './components/Toggle'
 import Faq from './components/Faq'
 
+import Tabs from './components/Tabs'
+import Modal from './components/Modal'
+import Products from './components/Products'
+
+
 const App = () => {
   return (
       <BrowserRouter>
@@ -191,13 +196,46 @@ const App = () => {
 
 
         <Route
-        path='/'
+        path='/faq'
         element={
           <>
           < Faq/>
           </>
         }
         /> 
+
+
+
+
+        <Route
+        path='/tabs'
+        element={
+          <>
+          < Tabs/>
+          </>
+        }
+        />
+
+        
+
+        <Route
+        path='/modal'
+        element={
+          <>
+          < Modal/>
+          </>
+        }
+        />  
+
+
+        <Route
+        path='/'
+        element={
+          <>
+          < Products/>
+          </>
+        }
+        />  
 
 
        
