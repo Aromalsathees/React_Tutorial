@@ -28,6 +28,13 @@ import Tabs from './components/Tabs'
 import Modal from './components/Modal'
 import Products from './components/Products'
 
+import Dashboard from './components/Dashboard'
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import Image_slider from './components/Image_slider'
+import Clock from './components/Clock'
+
+
 
 const App = () => {
   return (
@@ -75,14 +82,6 @@ const App = () => {
         }
         />
 
-         <Route
-        path='/login'
-        element={
-          <>
-          <Login/>
-          </>
-        }
-        />
 
 
          <Route
@@ -229,13 +228,57 @@ const App = () => {
 
 
         <Route
-        path='/'
+        path='/products'
         element={
           <>
           < Products/>
           </>
         }
         />  
+
+
+
+
+
+          {/* <Route
+        path='/login'
+        element={
+          <>
+          <Login/>
+          </>
+        }
+        />
+
+
+            <Route
+        path='/dashboard'
+        element={
+          <>
+          <Dashboard/>
+          </>
+        }
+        /> */}
+
+
+        <Route
+        path='/image_slider'
+        element={
+          <>
+          <Image_slider/>
+          </>
+        }/>
+
+
+        <Route
+          path='/'
+          element={
+            <>
+            <Clock/>
+            </>
+          }
+          />
+        
+
 
 
        

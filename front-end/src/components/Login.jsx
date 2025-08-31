@@ -1,66 +1,89 @@
-import React from 'react'
-import {useState} from 'react'
+// import React from 'react'
+// import {useState } from 'react'
+// import {useNavigate} from 'react-router-dom'
 
-const Login = () => {
-    const [data ,SetData] = useState({
-        email : '',
-        password : ''
-    })
+// const Login = () => {
 
-    function handleSubmit(e){
-        e.preventDefault()
-        if(!data.email){
-            alert('email required')
-            return;
-        }
-        if(!data.email.includes('@')){
-            alert('enter proper email address')
-            return;
-        }
+//     const [Datas , SetDatas] = useState({
+//         email : '',
+//         password : ''
+//     })
 
-        alert('form submitted')
+//     const Navigate = useNavigate()
+
+//     function handleChange(e){
+//          const{name , value} = e.target
+//          SetDatas(function(prev){
+//             return{
+//                 ...prev , [name]:value
+//             }
+//          })
+//     }
+
+//     function handleSubmit(e){
+//         e.preventDefault()
+//         alert('form submitted')
+//         Navigate('/dashboard')
+
+//     }
+
+
+//   return (
+//     <div>
+//         <div>
+//             <form onSubmit={handleSubmit}>
+//                 <div>
+//                     <label htmlFor="">Email</label>
+//                     <input type="text" name="email" onChange={handleChange} value={Datas.email} />
+//                 </div>
+
+//                 <div>
+//                     <label htmlFor="">Password</label>
+//                     <input type="text" name="password" onChange={handleChange} value={Datas.password} />
+//                 </div>
+//                 <button type='submit'>submit</button>
+//             </form>
+//         </div>
+//     </div>
+//   )
+// }
+
+// export default Login
+
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+const Login = ({ setIsLoggedIn }) => {
+  const [form, setForm] = useState({ email: '', password: '' })
+  const navigate = useNavigate()
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    setForm(prev => ({ ...prev, [name]: value }))
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    if (form.email === 'test@test.com' && form.password === '1234') {
+      setIsLoggedIn(true)  // ✅ this will work now
+      navigate('/dashboard')
+    } else {
+      alert('Invalid credentials')
     }
-
-
-    function handleChange(e){
-        const {name , value} = e.target
-
-        SetData(function(prev){
-            return{
-                ...prev , [name] : value
-
-            }
-            
-        })
-    }
+  }
 
   return (
-
-
     <div>
-
-   <form onSubmit={handleSubmit}>
-        <label htmlFor="">email address</label>
-        <input 
-        type="text"
-        name = "email"
-        value = {data.email}
-        onChange={handleChange} />
-
-          
-        <label htmlFor="">password</label>
-        <input 
-        type="text"
-        name = "password"
-        value = {data.password}
-        onChange={handleChange} />
-
-        <button type='submit'>submit</button>
-    </form>
-
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} />
+        <br />
+        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} />
+        <br />
+        <button type="submit">Login</button>
+      </form>
     </div>
-
-
   )
 }
 
