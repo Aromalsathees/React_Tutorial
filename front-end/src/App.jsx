@@ -2,14 +2,14 @@ import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Forms from './components/Forms'
 import Buttons from './components/Buttons'
-import Login from './components/Login'
+// import Login from './components/Login'
 import Vaidity_check from './components/Vaidity_check'
 import Props_page from './components/Props_page'
 import Fetch_data from './components/Fetch_data'
 import Search from './components/Search'
 
 import Users from './components/Users'
-import Home from './components/Home'
+// import Home from './components/Home'
 
 
 import Parent from './components/Parent'
@@ -35,11 +35,51 @@ import Image_slider from './components/Image_slider'
 import Clock from './components/Clock'
 
 
+import Login from './Intermediate/Login'
+import Home from './Intermediate/Home'
+import {useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+
+
 
 const App = () => {
+
+  const [isLogin , noLogin] = useState(false)
+  const Navigate = useNavigate()
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      isLogin(True)
+    }
+  },[])
+  
+
+
   return (
+
       <BrowserRouter>
       <Routes>
+       
+       
+
+
+        <Route
+        path='/'
+        element={
+          isLogin ? <Home/> : <Navigate to='/log'/>
+        
+        }
+        />
+
+        <Route
+        path='/log'
+        element= {
+          isLogin ? <Login/> : <Navigate to='/'/>
+        
+        }
+        />
+
 
           <Route
         path='/home'
@@ -268,7 +308,7 @@ const App = () => {
           </>
         }/>
 
-
+{/* 
         <Route
           path='/'
           element={
@@ -276,7 +316,7 @@ const App = () => {
             <Clock/>
             </>
           }
-          />
+          /> */}
         
 
 
